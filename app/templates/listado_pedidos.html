@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pedidos - TechBol</title>
+</head>
+<body>
+
+    <h1>TechBol - Pedidos</h1>
+
+    <a href="/">Inicio</a>
+
+    <h2>Lista de pedidos</h2>
+
+    <a href="/pedidos/nuevo">Registrar pedido</a>
+
+    <br><br>
+
+    <table border="1" cellpadding="8">
+
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Acciones</th>
+        </tr>
+
+        {% for pedido in pedidos %}
+
+        <tr>
+            <td>{{ pedido.id }}</td>
+            <td>{{ pedido.fecha }}</td>
+            <td>{{ pedido.monto }}</td>
+            <td>{{ pedido.cliente.nombre }}</td>
+            <td>{{ pedido.producto.nombre }}</td>
+
+            <td>
+                <a href="/pedidos/editar/{{ pedido.id }}">
+                    Editar
+                </a>
+
+                <form method="POST"
+                      action="/pedidos/eliminar/{{ pedido.id }}"
+                      style="display:inline">
+
+                    <button type="submit">
+                        Eliminar
+                    </button>
+
+                </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

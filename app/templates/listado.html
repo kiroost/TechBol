@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ titulo }} - TechBol</title>
+</head>
+<body>
+
+    <h1>TechBol</h1>
+
+    <a href="/">Inicio</a>
+
+    <h2>Lista de {{ titulo }}</h2>
+
+    <a href="{{ nuevo }}">Agregar nuevo registro</a>
+
+    <br><br>
+
+    <table border="1" cellpadding="8">
+
+        <tr>
+            <th>ID</th>
+
+            {% for campo in campos %}
+            <th>{{ campo }}</th>
+            {% endfor %}
+
+            <th>Acciones</th>
+        </tr>
+
+        {% for registro in registros %}
+
+        <tr>
+
+            <td>{{ registro.id }}</td>
+
+            {% for campo in campos %}
+            <td>{{ registro|attr(campo) }}</td>
+            {% endfor %}
+
+            <td>
+
+                <a href="{{ url_for(editar, id=registro.id) }}">
+                    Editar
+                </a>
+
+                |
+
+                <a href="{{ url_for(eliminar, id=registro.id) }}"
+                   onclick="return confirm('¿Eliminar registro?')">
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

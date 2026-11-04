@@ -1,0 +1,26 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}TechBot{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">TechBot</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/productos/">Productos</a></li>
+            <li><a href="/clientes/">Clientes</a></li>
+            <li><a href="/pedidos/">Pedidos</a></li>
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block contenido %}{% endblock %}
+</div>
+{% endblock %}

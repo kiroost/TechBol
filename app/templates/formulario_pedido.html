@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de pedido - TechBol</title>
+</head>
+<body>
+
+    <h1>TechBol</h1>
+
+    <h2>Registrar pedido</h2>
+
+    <form method="POST">
+
+        <label>Fecha:</label><br>
+
+        <input type="date"
+               name="fecha"
+               value="{{ pedido.fecha.isoformat() if pedido else '' }}"
+               required>
+
+        <br><br>
+
+        <label>Monto:</label><br>
+
+        <input type="number"
+               step="0.01"
+               name="monto"
+               value="{{ pedido.monto if pedido else '' }}"
+               required>
+
+        <br><br>
+
+        <label>Cliente:</label><br>
+
+        <select name="cliente_id" required>
+
+            {% for cliente in clientes %}
+
+            <option value="{{ cliente.id }}"
+                {% if pedido and pedido.cliente_id == cliente.id %}
+                    selected
+                {% endif %}>
+
+                {{ cliente.nombre }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>Producto:</label><br>
+
+        <select name="producto_id" required>
+
+            {% for producto in productos %}
+
+            <option value="{{ producto.id }}"
+                {% if pedido and pedido.producto_id == producto.id %}
+                    selected
+                {% endif %}>
+
+                {{ producto.nombre }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">Guardar pedido</button>
+
+    </form>
+
+    <br>
+
+    <a href="/pedidos/">Volver</a>
+
+</body>
+</html>
